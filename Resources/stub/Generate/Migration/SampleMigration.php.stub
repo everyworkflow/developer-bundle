@@ -1,0 +1,26 @@
+<?php
+
+{{ generate_file_header | raw }}
+
+declare(strict_types=1);
+
+namespace {{ file_namespace }};
+
+use EveryWorkflow\MongoBundle\Support\MigrationInterface;
+
+class {{ file_name }} implements MigrationInterface
+{
+    public function migrate(): bool
+    {
+        // Something
+
+        return self::FAILURE;
+    }
+
+    public function rollback(): bool
+    {
+        // Something
+
+        return self::FAILURE;
+    }
+}

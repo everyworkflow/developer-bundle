@@ -1,0 +1,3 @@
+{{ app_namespace }}{{ bundle_name }}_Controller:
+    resource: "../../Controller/"
+    type: annotation

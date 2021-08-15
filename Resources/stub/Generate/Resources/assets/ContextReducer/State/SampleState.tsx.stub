@@ -1,0 +1,9 @@
+{{ generate_file_header | raw }}
+
+import {{ state_interface_name }} from "{{ state_interface_namespace }}";
+
+const {{ file_name }}: {{ state_interface_name }} = {
+    is_active: false,
+};
+
+export default {{ file_name }};

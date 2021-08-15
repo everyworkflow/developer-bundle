@@ -1,0 +1,7 @@
+{{ generate_file_header | raw }}
+
+interface {{ file_name }} {
+    id: string;
+}
+
+export default {{ file_name }};

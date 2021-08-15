@@ -1,0 +1,7 @@
+{{ generate_file_header | raw }}
+
+interface {{ file_name }} {
+    is_active: boolean;
+}
+
+export default {{ file_name }};

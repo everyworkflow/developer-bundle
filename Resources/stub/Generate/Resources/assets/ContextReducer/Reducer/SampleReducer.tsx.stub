@@ -1,0 +1,16 @@
+{{ generate_file_header | raw }}
+
+import {{ state_interface_name }} from "{{ state_interface_namespace }}";
+import {{ action_interface_name }} from "{{ action_interface_namespace }}";
+
+const {{ file_name }} = (
+    state: {{ state_interface_name }},
+    action: {{ action_interface_name }}
+) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+
+export default {{ file_name }};

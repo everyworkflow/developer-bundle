@@ -1,0 +1,14 @@
+<?php
+
+{{ generate_file_header | raw }}
+
+declare(strict_types=1);
+
+namespace {{ file_namespace }};
+
+use EveryWorkflow\MongoBundle\Repository\BaseDocumentRepositoryInterface;
+
+interface {{ file_name }} extends BaseDocumentRepositoryInterface
+{
+    // Something
+}

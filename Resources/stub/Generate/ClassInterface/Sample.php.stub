@@ -1,0 +1,12 @@
+<?php
+
+{{ generate_file_header | raw }}
+
+declare(strict_types=1);
+
+namespace {{ file_namespace }};
+
+class {{ file_name }} implements {{ interface_name }}
+{
+    // Something
+}

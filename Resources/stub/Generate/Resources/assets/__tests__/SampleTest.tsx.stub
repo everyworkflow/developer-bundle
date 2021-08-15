@@ -1,0 +1,7 @@
+{{ generate_file_header | raw }}
+
+import React from 'react';
+
+test('{{ file_name }}', () => {
+    expect(2 + 2).toBe(4);
+});

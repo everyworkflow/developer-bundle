@@ -1,0 +1,20 @@
+<?php
+
+{{ generate_file_header | raw }}
+
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\DefaultsConfigurator;
+
+return function (ContainerConfigurator $configurator) {
+    /** @var DefaultsConfigurator $services */
+    $services = $configurator
+        ->services()
+        ->defaults()
+        ->autowire()
+        ->autoconfigure();
+
+    $services
+        ->load('{{ app_namespace }}\\{{ bundle_name }}\\', '../../*')
+        ->exclude('../../{DependencyInjection,Resources,Support,Tests}');
+};

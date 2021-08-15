@@ -1,0 +1,33 @@
+{
+    "name": "everyworkflow/developer-bundle",
+    "description": "Developer bundle for every workflow project.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "EveryWorkflow",
+            "email": "everyworkflow@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "5.4.*",
+        "twig/twig": "^3.0",
+        "symfony/finder": "^4.4|^5.0|^6.0",
+        "everyworkflow/core-bundle": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "EveryWorkflow\\DeveloperBundle\\": "./"
+        },
+        "exclude-from-classmap": [
+            "Resources",
+            "Tests"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EveryWorkflow\\DeveloperBundle\\Tests\\": "Tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}

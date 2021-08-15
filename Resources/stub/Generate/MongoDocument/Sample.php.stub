@@ -1,0 +1,30 @@
+<?php
+
+{{ generate_file_header | raw }}
+
+declare(strict_types=1);
+
+namespace {{ file_namespace }};
+
+use EveryWorkflow\MongoBundle\Document\BaseDocument;
+
+class {{ file_name }} extends BaseDocument implements {{ interface_name }}
+{
+    // Something
+
+    {% for field in fields %}
+
+    public function set{{ field.fun_name }}(string ${{ field.camel_case}}): self
+    {
+        $this->dataObject->setData(self::KEY_{{ field.field_name}}, ${{ field.camel_case}});
+        return $this;
+    }
+
+    public function get{{ field.fun_name }}(): ?string
+    {
+        return $this->dataObject->getData(self::KEY_{{ field.field_name}});
+    }
+
+    {% endfor %}
+
+}

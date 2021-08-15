@@ -1,0 +1,9 @@
+{{ generate_file_header | raw }}
+
+import React from 'react';
+
+const {{ file_name }} = () => {
+    return <h1>Hello from {{ file_name }}</h1>;
+}
+
+export default {{ file_name }};

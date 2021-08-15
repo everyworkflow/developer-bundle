@@ -1,0 +1,17 @@
+{{ generate_file_header | raw }}
+
+import {createContext} from 'react';
+import {{ state_interface_name }} from '{{ state_interface_namespace }}';
+import {{ state_name }} from "{{ state_namespace }}";
+
+export interface {{ context_interface_name }} {
+    state: {{ state_interface_name }};
+    dispatch: any;
+}
+
+const {{ file_name }} = createContext<{{ context_interface_name }}>({
+    state: {{ state_name }},
+    dispatch: () => null,
+});
+
+export default {{ file_name }};

@@ -1,0 +1,25 @@
+{
+    "name": "{{ app_namespace | lower }}/{{ package_name }}",
+    "description": "",
+    "type": "package",
+    "authors": [
+        {
+            "name": "{{ app_namespace }}",
+            "email": "author@example.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "{{ app_namespace }}\\{{ bundle_name }}\\": "./"
+        },
+        "exclude-from-classmap": [
+            "Resources",
+            "Tests"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "{{ app_namespace }}\\{{ bundle_name }}\\Tests\\": "Tests/"
+        }
+    }
+}
