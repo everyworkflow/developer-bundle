@@ -24,6 +24,8 @@ class GenerateMongoDocumentCommand extends Command
 
     protected static $defaultName = 'generate:mogo-document';
 
+    protected string $appNamespace = '';
+
     protected StubFactoryInterface $stubFactory;
     protected StubGeneratorInterface $stubGenerator;
 
@@ -32,11 +34,13 @@ class GenerateMongoDocumentCommand extends Command
     public function __construct(
         StubFactoryInterface $stubFactory,
         StubGeneratorInterface $stubGenerator,
+        $appNamespace = '',
         string $name = null
     ) {
         parent::__construct($name);
         $this->stubFactory = $stubFactory;
         $this->stubGenerator = $stubGenerator;
+        $this->appNamespace = $appNamespace;
     }
 
     /**
@@ -63,10 +67,10 @@ class GenerateMongoDocumentCommand extends Command
 
         $inputOutput->title('Generate mongo document & repository pair');
 
-        $this->generateDocument($input, $inputOutput);
+        $documentData = $this->generateDocument($input, $inputOutput);
         $inputOutput->newLine();
 
-        $this->generateRepository($input, $inputOutput);
+        $this->generateRepository($input, $inputOutput, $documentData[0], $documentData[1]);
         $inputOutput->newLine();
 
         return Command::SUCCESS;
@@ -95,7 +99,7 @@ class GenerateMongoDocumentCommand extends Command
         $this->getDocumentField($input, $output);
     }
 
-    protected function generateDocument(InputInterface $input, SymfonyStyle $inputOutput): void
+    protected function generateDocument(InputInterface $input, SymfonyStyle $inputOutput): array
     {
         $documentName = $input->getArgument(self::KEY_DOCUMENT_NAME);
         if (!strpos($documentName, 'Document')) {
@@ -128,16 +132,20 @@ class GenerateMongoDocumentCommand extends Command
             ->setData('interface_name', $interfaceStub->getFileName());
         $classFilePath = $this->stubGenerator->generate($classStub);
         $inputOutput->success('Successfully generated class:- ' . $classFilePath);
+
+        return [
+            $classStub->getFileName(),
+            $classStub->getFileNamespace() . '\\' . $classStub->getFileName(),
+        ];
     }
 
-    protected function generateRepository(InputInterface $input, SymfonyStyle $inputOutput): void
-    {
+    protected function generateRepository(
+        InputInterface $input,
+        SymfonyStyle $inputOutput,
+        string $documentName,
+        string $documentNamespace
+    ): void {
         $documentRepositoryName = $input->getArgument(self::KEY_DOCUMENT_NAME) . 'Repository';
-        $collectionName = $input->getArgument(self::KEY_DOCUMENT_NAME);
-        $collectionName = preg_replace('/[A-Z]/', '_$0', $collectionName);
-        $collectionName = strtolower($collectionName);
-        $collectionName = ltrim($collectionName, '_');
-        $collectionName .= '_collection';
 
         /* Preparing interfaceStub for generation */
         $interfaceStub = $this->stubFactory->create(
@@ -159,7 +167,8 @@ class GenerateMongoDocumentCommand extends Command
         );
         $classStub->setStubPath(__DIR__ . '/../Resources/stub/Generate/MongoDocument/SampleRepository.php.stub')
             ->setData('interface_name', $interfaceStub->getFileName())
-            ->setData('collection_name', $collectionName);
+            ->setData('document_name', $documentName)
+            ->setData('document_namespace', $documentNamespace);
         $classFilePath = $this->stubGenerator->generate($classStub);
         $inputOutput->success('Successfully generated class:- ' . $classFilePath);
     }

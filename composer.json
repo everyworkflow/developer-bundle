@@ -10,9 +10,9 @@
         }
     ],
     "require": {
-        "symfony/console": "5.4.*",
+        "symfony/console": "6.0.*",
         "doctrine/inflector": "^2.0",
-        "symfony/twig-bundle": "5.4.*",
+        "symfony/twig-bundle": "6.0.*",
         "symfony/finder": "^4.4|^5.0|^6.0",
         "everyworkflow/core-bundle": "dev-main"
     },

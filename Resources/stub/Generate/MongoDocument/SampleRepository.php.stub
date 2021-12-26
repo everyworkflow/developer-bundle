@@ -7,10 +7,11 @@ declare(strict_types=1);
 namespace {{ file_namespace }};
 
 use EveryWorkflow\MongoBundle\Repository\BaseDocumentRepository;
+use EveryWorkflow\MongoBundle\Support\Attribute\RepositoryAttribute;
+use {{ document_namespace }};
 
+#[RepositoryAttribute(documentClass: {{ document_name }}::class)]
 class {{ file_name }} extends BaseDocumentRepository implements {{ interface_name }}
 {
-    protected string $collectionName = '{{ collection_name }}';
-    
     // Something
 }
