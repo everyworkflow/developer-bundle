@@ -157,7 +157,8 @@ class Stub implements StubInterface
      */
     public function unsetData(string $key): self
     {
-        return $this->dataObject->unsetData($key);
+        $this->dataObject->unsetData($key);
+        return $this;
     }
 
     public function resetData(array $data): self
