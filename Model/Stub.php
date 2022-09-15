@@ -153,9 +153,9 @@ class Stub implements StubInterface
 
     /**
      * @param string $key
-     * @return mixed
+     * @return self
      */
-    public function unsetData(string $key): mixed
+    public function unsetData(string $key): self
     {
         return $this->dataObject->unsetData($key);
     }
